@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c8lq2krah1tfr"]
+
+[ext_resource type="PackedScene" uid="uid://dplayercube01" path="res://scenes/player_cube.tscn" id="player"]
+[ext_resource type="Script" uid="uid://yihl51tcbxtm" path="res://scenes/level_2.gd" id="script"]
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("script")
+
+[node name="Player" type="Node2D" parent="." unique_id=574451478 instance=ExtResource("player")]
+position = Vector2(137, -88)
+z_index = 100

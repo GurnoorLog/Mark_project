@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://dialoguebox01"]
+
+[ext_resource type="Script" path="res://dialogue/dialogue_box.gd" id="1_box"]
+
+[sub_resource type="StyleBoxFlat" id="sb_box"]
+bg_color = Color(0.04, 0.05, 0.07, 0.94)
+border_color = Color(0.5, 0.6, 0.7, 0.5)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_all = 8
+
+[node name="DialogueBox" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource("1_box")
+
+[node name="Box" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -200.0
+offset_right = 420.0
+offset_bottom = 200.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("sb_box")
+
+[node name="Accent" type="ColorRect" parent="Box"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 14.0
+offset_right = 20.0
+offset_bottom = -14.0
+color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="Speaker" type="Label" parent="Box"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 30.0
+offset_top = 12.0
+offset_right = -16.0
+offset_bottom = 38.0
+text = "Speaker"
+
+[node name="Text" type="Label" parent="Box"]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 46.0
+offset_right = -20.0
+offset_bottom = -120.0
+autowrap_mode = 2
+text = "..."
+vertical_alignment = 1
+
+[node name="Choices" type="VBoxContainer" parent="Box"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -110.0
+offset_right = -20.0
+offset_bottom = -12.0
+alignment = 1
+theme_override_constants/separation = 10

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://interactable01"]
+
+[ext_resource type="Script" path="res://dialogue/interactable.gd" id="1_ia"]
+
+[sub_resource type="RectangleShape2D" id="rect_ia"]
+size = Vector2(70, 90)
+
+[sub_resource type="RectangleShape2D" id="rect_prompt"]
+size = Vector2(120, 24)
+
+[node name="Interactable" type="Area2D"]
+script = ExtResource("1_ia")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("rect_ia")
+
+[node name="Prompt" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -110.0
+offset_right = 60.0
+offset_bottom = -86.0
+text = "[E] Interact"
+horizontal_alignment = 1

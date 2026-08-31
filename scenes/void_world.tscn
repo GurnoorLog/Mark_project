@@ -1,0 +1,111 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/void_world.gd" id="1_vw"]
+[ext_resource type="Script" path="res://assets/forest/background/player.gd" id="1_p"]
+[ext_resource type="Script" path="res://assets/forest/background/camera_follow.gd" id="1_cam"]
+[ext_resource type="PackedScene" path="res://dialogue/interactable.tscn" id="1_int"]
+[ext_resource type="Texture2D" path="res://assets/player/character_walking.png" id="1_walk_tex"]
+
+[sub_resource type="RectangleShape2D" id="rect_ground"]
+size = Vector2(4000, 200)
+[sub_resource type="RectangleShape2D" id="rect_player"]
+size = Vector2(40, 40)
+
+[sub_resource type="AtlasTexture" id="atlas_w0"]
+atlas = ExtResource("1_walk_tex")
+region = Rect2(20, 0, 22, 68)
+[sub_resource type="AtlasTexture" id="atlas_w1"]
+atlas = ExtResource("1_walk_tex")
+region = Rect2(82, 0, 25, 68)
+[sub_resource type="AtlasTexture" id="atlas_w2"]
+atlas = ExtResource("1_walk_tex")
+region = Rect2(147, 0, 23, 68)
+[sub_resource type="AtlasTexture" id="atlas_w3"]
+atlas = ExtResource("1_walk_tex")
+region = Rect2(211, 0, 25, 68)
+[sub_resource type="AtlasTexture" id="atlas_w4"]
+atlas = ExtResource("1_walk_tex")
+region = Rect2(275, 0, 26, 68)
+[sub_resource type="AtlasTexture" id="atlas_w5"]
+atlas = ExtResource("1_walk_tex")
+region = Rect2(338, 0, 29, 68)
+[sub_resource type="SpriteFrames" id="frames_walk"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("atlas_w0")
+}, {
+"duration": 0.1,
+"texture": SubResource("atlas_w1")
+}, {
+"duration": 0.1,
+"texture": SubResource("atlas_w2")
+}, {
+"duration": 0.1,
+"texture": SubResource("atlas_w3")
+}, {
+"duration": 0.1,
+"texture": SubResource("atlas_w4")
+}, {
+"duration": 0.1,
+"texture": SubResource("atlas_w5")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[node name="VoidWorld" type="Node2D"]
+script = ExtResource("1_vw")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+[node name="Black" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+color = Color(0.02, 0.0, 0.05, 1)
+grow_horizontal = 2
+grow_vertical = 2
+[node name="Haze" type="ColorRect" parent="Background"]
+offset_left = -400.0
+offset_top = 100.0
+offset_right = 1200.0
+offset_bottom = 1100.0
+color = Color(0.5, 0.1, 0.7, 0.18)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, 590)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(0, 100)
+shape = SubResource("rect_ground")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(-300, 300)
+script = ExtResource("1_p")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("rect_player")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("frames_walk")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("1_cam")
+
+[node name="Core" type="Node2D" parent="." instance=ExtResource("1_int")]
+position = Vector2(700, 560)
+dialogue_id = "void_trial"
+prompt_text = "[E] Touch the Decision Core"
+
+[node name="DrVoid" type="Node2D" parent="."]
+position = Vector2(950, 470)
+[node name="Body" type="Polygon2D" parent="DrVoid"]
+color = Color(0.8, 0.2, 0.9, 1)
+polygon = PackedVector2Array(-30, 0, 0, -90, 30, 0, 0, 50)
+[node name="Label" type="Label" parent="DrVoid"]
+position = Vector2(-35, -120)
+text = "DR. VOID"
+horizontal_alignment = 1
+modulate = Color(0.9, 0.5, 1, 1)
